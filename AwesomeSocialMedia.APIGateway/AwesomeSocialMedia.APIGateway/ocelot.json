@@ -1,0 +1,35 @@
+{
+    "Routes": [
+        {
+            "UpstreamPathTemplate": "/post/{everything}",
+            "DownstreamPathTemplate": "/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 7031
+                }
+            ],
+            "UpstreamHttpMethod": ["GET", "POST", "PUT"]
+        },
+        {
+            "UpstreamPathTemplate": "/newsfeed/{everything}",
+            "DownstreamPathTemplate": "/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5269
+                }
+            ],
+            "UpstreamHttpMethod": ["GET", "POST", "PUT"],
+            "RateLimitOptions": {
+                "ClientWhitelist": [],
+                "EnableRateLimiting": true,
+                "Period": "20s",
+                "PeriodTimespan": 10,
+                "Limit": 3
+            }
+        }
+    ]
+}
